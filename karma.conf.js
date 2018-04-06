@@ -23,7 +23,7 @@ module.exports = function karmaConfig (config) {
     files: [
       // Reference: https://www.npmjs.com/package/phantomjs-polyfill
       // Needed because React.js requires bind and phantomjs does not support it
-      'node_modules/phantomjs-polyfill/bind-polyfill.js',
+      // 'node_modules/phantomjs-polyfill/bind-polyfill.js',
 
       // Grab all files in the tests directory that contain _test.
       'test/**/*.test.js'
@@ -38,8 +38,10 @@ module.exports = function karmaConfig (config) {
 
     browsers: [
       // Run tests using PhantomJS
-      'PhantomJS'
-      // ~ 'Chrome'
+      // 'PhantomJS'
+      // 'Chrome'
+      // 'ChromeHeadless'
+      'Firefox'
     ],
 
     singleRun: true,

@@ -1,9 +1,27 @@
 {
-  "private": true,
   "name": "blanc-karma",
   "version": "0.1.0",
   "description": "boilerplate using webpack and karma",
+  "keywords": [
+    "module",
+    "boilerplate"
+  ],
+  "homepage": "https://github.com/commenthol/blanc-karma",
+  "bugs": {
+    "url": "https://github.com/commenthol/blanc-karma/issues"
+  },
+  "license": "ISC",
+  "author": "commenthol <commenthol@gmail.com>",
   "main": "src/index.js",
+  "directories": {
+    "doc": "doc",
+    "example": "example",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commenthol/blanc-karma.git"
+  },
   "scripts": {
     "build": "webpack",
     "lint": "eslint --ignore-path .gitignore '**/*.js'",
@@ -11,37 +29,40 @@
     "tdd": "karma start --auto-watch --no-single-run",
     "readme": "markedpp --githubid -i README.md -o README.md"
   },
-  "author": "commenthol <commenthol@gmail.com>",
-  "license": "ISC",
+  "dependencies": {},
   "devDependencies": {
-    "babel-core": "^6.5.1",
-    "babel-loader": "^6.2.2",
-    "eslint": "^1.10.3",
-    "eslint-config-standard": "^4.4.0",
-    "eslint-plugin-standard": "^1.3.2",
-    "isparta-instrumenter-loader": "^1.0.0",
-    "karma": "^0.13.19",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-coverage": "^0.5.3",
-    "karma-mocha": "^0.2.1",
-    "karma-phantomjs-launcher": "^1.0.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "istanbul-instrumenter-loader": "^3.0.1",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.3.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-spec-reporter": "0.0.23",
-    "karma-webpack": "^1.7.0",
-    "mocha": "^2.4.5",
-    "phantomjs-polyfill": "0.0.1",
-    "phantomjs-prebuilt": "^2.1.4",
-    "webpack": "^1.12.13",
-    "webpack-merge": "^0.7.3"
+    "karma-spec-reporter": "0.0.32",
+    "karma-webpack": "^3.0.0",
+    "mocha": "^5.0.5",
+    "webpack": "^4.5.0",
+    "webpack-merge": "^4.1.2"
   },
+  "__phantom": {
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-polyfill": "0.0.1",
+    "phantomjs-prebuilt": "^2.1.4"
+  },
+  "private": true,
   "eslintConfig": {
     "extends": "standard",
     "rules": {
       "no-console": 2
     }
   },
-  "dependencies": {
-    "babel-preset-es2015": "^6.5.0",
-    "babel-preset-stage-2": "^6.5.0"
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": []
   }
 }

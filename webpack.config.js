@@ -6,43 +6,37 @@ const TARGET = process.env.npm_lifecycle_event
 const ROOT_PATH = path.resolve(__dirname)
 
 const common = {
-  entry: path.resolve(ROOT_PATH, 'src'),
-  resolve: {
-    extensions: ['', '.js']
-  },
-  output: {
-    path: path.resolve(ROOT_PATH, 'build'),
-    filename: 'bundle.js'
-  }
+  // entry: path.resolve(ROOT_PATH, 'src'),
+  // resolve: {
+    // extensions: ['', '.js']
+  // },
+  // output: {
+    // path: path.resolve(ROOT_PATH, 'build'),
+    // filename: 'bundle.js'
+  // }
 }
+
+console.log(TARGET)
 
 if (TARGET === 'test' || TARGET === 'tdd') {
   module.exports = merge(common, {
-    entry: {}, // karma will set this
-    output: {}, // karma will set this
+    mode: 'development',
     devtool: 'inline-source-map',
-    resolve: {
-      alias: {
-        'src': path.resolve(ROOT_PATH, 'src')
-      }
-    },
     module: {
-      preLoaders: [
+      rules: [
         {
           test: /\.jsx?$/,
-          loaders: ['isparta-instrumenter'],
-          include: path.resolve(ROOT_PATH, 'src')
-        }
-      ],
-      loaders: [
-        {
-          test: /\.jsx?$/,
-          loaders: ['babel'],
+          loaders: ['babel-loader'],
           include: [
             path.resolve(ROOT_PATH, 'src'),
             path.resolve(ROOT_PATH, 'test')
           ]
-        }
+        },
+        {
+          test: /\.jsx?$/,
+          loaders: ['istanbul-instrumenter-loader'],
+          include: path.resolve(ROOT_PATH, 'src')
+        },
       ]
     }
   })
