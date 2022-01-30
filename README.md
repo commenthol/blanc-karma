@@ -34,6 +34,10 @@ Run the different tools from `npm`
 
 ### Example ...
 
+## Pitfalls
+
+Do not use `{ "types": "module" }` in `package.json` as karma won't start.
+
 
 ## Contribution and License Agreement
 
