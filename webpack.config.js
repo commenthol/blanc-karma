@@ -1,43 +1,51 @@
-var path = require('path')
-// ~ var webpack = require('webpack')
-var merge = require('webpack-merge')
+const path = require('path')
 
 const TARGET = process.env.npm_lifecycle_event
 const ROOT_PATH = path.resolve(__dirname)
 
-const common = {
-  // entry: path.resolve(ROOT_PATH, 'src'),
-  // resolve: {
-    // extensions: ['', '.js']
-  // },
-  // output: {
-    // path: path.resolve(ROOT_PATH, 'build'),
-    // filename: 'bundle.js'
-  // }
-}
-
-console.log(TARGET)
-
 if (TARGET === 'test' || TARGET === 'tdd') {
-  module.exports = merge(common, {
+  module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
     module: {
       rules: [
         {
           test: /\.jsx?$/,
-          loaders: ['babel-loader'],
+          use: ['babel-loader'],
           include: [
             path.resolve(ROOT_PATH, 'src'),
             path.resolve(ROOT_PATH, 'test')
           ]
-        },
-        {
-          test: /\.jsx?$/,
-          loaders: ['istanbul-instrumenter-loader'],
-          include: path.resolve(ROOT_PATH, 'src')
-        },
+        }
       ]
+    },
+    resolve: {
+      // @see https://webpack.js.org/configuration/resolve/
+      fallback: {
+        assert: require.resolve('assert')
+        // buffer: require.resolve('buffer'),
+        // console: require.resolve('console-browserify'),
+        // constants: require.resolve('constants-browserify'),
+        // crypto: require.resolve('crypto-browserify'),
+        // domain: require.resolve('domain-browser'),
+        // events: require.resolve('events'),
+        // http: require.resolve('stream-http'),
+        // https: require.resolve('https-browserify'),
+        // os: require.resolve('os-browserify/browser'),
+        // path: require.resolve('path-browserify'),
+        // punycode: require.resolve('punycode'),
+        // process: require.resolve('process/browser'),
+        // querystring: require.resolve('querystring-es3'),
+        // stream: require.resolve('stream-browserify'),
+        // string_decoder: require.resolve('string_decoder'),
+        // sys: require.resolve('util'),
+        // timers: require.resolve('timers-browserify'),
+        // tty: require.resolve('tty-browserify'),
+        // url: require.resolve('url'),
+        // util: require.resolve('util'),
+        // vm: require.resolve('vm-browserify'),
+        // zlib: require.resolve('browserify-zlib'),
+      }
     }
-  })
+  }
 }

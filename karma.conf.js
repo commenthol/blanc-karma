@@ -1,9 +1,20 @@
 // needed given our Webpack configuration uses ES6 and JSX
-require('babel-core/register')
+// require('@babel/register')
 
 // Reference: http://karma-runner.github.io/0.13/config/configuration-file.html
 module.exports = function karmaConfig (config) {
   config.set({
+    // Make Karma work with pnpm.
+    // See: https://github.com/pnpm/pnpm/issues/720#issuecomment-954120387
+    plugins: Object.keys(require('./package.json').devDependencies).flatMap(
+      (packageName) => {
+        if (!packageName.startsWith('karma-') || packageName === 'karma-cli') {
+          return []
+        }
+        return [require(packageName)]
+      }
+    ),
+
     frameworks: [
       // Reference: https://github.com/karma-runner/karma-mocha
       // Set framework to mocha
@@ -11,45 +22,37 @@ module.exports = function karmaConfig (config) {
     ],
 
     reporters: [
-      // Reference: https://github.com/mlex/karma-spec-reporter
-      // Set reporter to print detailed results to console
-      'spec',
-
+      'progress',
       // Reference: https://github.com/karma-runner/karma-coverage
       // Output code coverage files
       'coverage'
     ],
 
     files: [
-      // Reference: https://www.npmjs.com/package/phantomjs-polyfill
-      // Needed because React.js requires bind and phantomjs does not support it
-      // 'node_modules/phantomjs-polyfill/bind-polyfill.js',
-
+      'test/karma-global.js',
       // Grab all files in the tests directory that contain _test.
-      'test/**/*.test.js'
+      'test/**/*.spec.js'
     ],
 
     preprocessors: {
       // Reference: http://webpack.github.io/docs/testing.html
       // Reference: https://github.com/webpack/karma-webpack
       // Convert files with webpack and load sourcemaps
-      'test/**/*.test.js': ['webpack', 'sourcemap']
+      'test/**/*.spec.js': ['webpack', 'coverage', 'sourcemap']
     },
 
     browsers: [
-      // Run tests using PhantomJS
-      // 'PhantomJS'
-      // 'Chrome'
-      // 'ChromeHeadless'
-      'Firefox'
+      // 'Chrome',
+      // 'Firefox',
+      'ChromeHeadless'
     ],
 
     singleRun: true,
 
     // Configure code coverage reporter
     coverageReporter: {
-      dir: 'build/coverage/',
-      type: 'html'
+      type: 'html',
+      dir: 'coverage/'
     },
 
     // Test webpack config
@@ -61,4 +64,3 @@ module.exports = function karmaConfig (config) {
     }
   })
 }
-

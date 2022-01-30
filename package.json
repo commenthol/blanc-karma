@@ -1,6 +1,6 @@
 {
   "name": "blanc-karma",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "boilerplate using webpack and karma",
   "keywords": [
@@ -11,6 +11,10 @@
   "bugs": {
     "url": "https://github.com/commenthol/blanc-karma/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commenthol/blanc-karma.git"
+  },
   "license": "ISC",
   "author": "commenthol <commenthol@gmail.com>",
   "main": "src/index.js",
@@ -19,50 +23,42 @@
     "example": "example",
     "test": "test"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/commenthol/blanc-karma.git"
-  },
   "scripts": {
     "build": "webpack",
-    "lint": "eslint --ignore-path .gitignore '**/*.js'",
+    "ci": "npm-run-all lint test test:karma",
+    "lint": "eslint --fix --ext js .",
     "readme": "markedpp --githubid -i README.md -o README.md",
     "tdd": "karma start --auto-watch --no-single-run",
-    "test": "karma start"
+    "test:karma": "karma start",
+    "test": "c8 mocha"
   },
-  "babel": {
-    "plugins": [],
-    "presets": [
-      "env"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "standard",
-    "rules": {
-      "no-console": 2
-    }
-  },
-  "dependencies": {},
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "istanbul-instrumenter-loader": "^3.0.1",
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage": "^1.1.1",
-    "karma-firefox-launcher": "^1.1.0",
-    "karma-mocha": "^1.3.0",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-spec-reporter": "0.0.32",
-    "karma-webpack": "^3.0.0",
-    "mocha": "^5.0.5",
-    "webpack": "^4.5.0",
-    "webpack-merge": "^4.1.2"
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.16.9",
+    "assert": "^2.0.0",
+    "babel-loader": "^8.2.3",
+    "c8": "^7.11.0",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.28.0",
+    "jsdom": "^19.0.0",
+    "jsdom-global": "^3.0.2",
+    "karma": "^6.3.12",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.1.0",
+    "karma-firefox-launcher": "^2.1.2",
+    "karma-mocha": "^2.0.1",
+    "karma-sourcemap-loader": "^0.3.8",
+    "karma-webpack": "^5.0.0",
+    "mocha": "^9.2.0",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^5.67.0"
   },
-  "__phantom": {
-    "karma-phantomjs-launcher": "^1.0.0",
-    "phantomjs-polyfill": "0.0.1",
-    "phantomjs-prebuilt": "^2.1.4"
+  "engines": {
+    "node": ">=16"
   }
 }

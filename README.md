@@ -7,7 +7,7 @@ This is a boilerplate for a browser based modules using:
 * [mocha][] tests,
 * [karma][] in browser testing,
 * [webpack][] and [babel][],
-* [isparta-instrumenter][] for code coverage,
+* [karma-coverage][] and [c8][] for code coverage,
 * [eslint][] using [standard][] syntax for code linting
 
 The files contain examples to show the usage of the different tools in your code.
@@ -28,7 +28,7 @@ The files contain examples to show the usage of the different tools in your code
 
 Run the different tools from `npm`
 
-* `npm test`      - Run tests with coverage (output is in `build/coverage`)
+* `npm test`      - Run mocha tests with coverage
 * `npm run tdd`   - Run tests with auto-watch
 * `npm run lint`  - Linting the source
 
@@ -53,27 +53,29 @@ See [LICENSE][] for more info.
 <!-- !ref -->
 
 * [babel][babel]
+* [c8][c8]
 * [eslint][eslint]
 * [eslint-config-standard][eslint-config-standard]
 * [eslint-plugin-standard][eslint-plugin-standard]
-* [isparta-instrumenter][isparta-instrumenter]
 * [jsdox][jsdox]
 * [karma][karma]
+* [karma-coverage][karma-coverage]
 * [LICENSE][LICENSE]
 * [mocha][mocha]
 * [standard][standard]
+* [webpack][webpack]
 
 <!-- ref! -->
 
+[babel]: https://babeljs.io/
+[c8]: https://www.npmjs.com/package/c8
+[eslint-config-standard]: https://github.com/feross/eslint-config-standard
+[eslint-plugin-standard]: https://github.com/xjamundx/eslint-plugin-standard
+[eslint]: http://eslint.org
+[jsdox]: http://jsdox.org/
+[karma-coverage]: https://www.npmjs.com/package/karma-coverage
+[karma]: http://karma-runner.github.io
 [LICENSE]: ./LICENSE
 [mocha]: http://mochajs.org/
-[eslint]: http://eslint.org
-[eslint-plugin-standard]: https://github.com/xjamundx/eslint-plugin-standard
-[eslint-config-standard]: https://github.com/feross/eslint-config-standard
 [standard]: http://standardjs.com
-[jsdox]: http://jsdox.org/
-[isparta-instrumenter]: https://www.npmjs.com/package/isparta-instrumenter-loader
-[babel]: https://babeljs.io/
-[karma]: http://karma-runner.github.io
 [webpack]: https://webpack.github.io/
-[ISC License]: https://opensource.org/licenses/ISC
